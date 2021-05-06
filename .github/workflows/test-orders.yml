@@ -2,7 +2,8 @@ name: orders-auth
 
 on:
   pull_request:
-    - 'orders/**'
+    paths:
+      - 'orders/**'
 
 jobs:
   build:
