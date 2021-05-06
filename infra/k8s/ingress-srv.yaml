@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: ticketing.dev
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-cluster-ip
+              servicePort: 3000
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-cluster-ip
+              servicePort: 3000
+          - path: /api/tickets/?(.*)
+            backend:
+              serviceName: tickets-cluster-ip
+              servicePort: 3000
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-cluster-ip
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip
+              servicePort: 3000
