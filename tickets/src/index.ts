@@ -22,6 +22,7 @@ const start = async () => {
   }
 
   try {
+    console.log('Starting up tickets....');
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
